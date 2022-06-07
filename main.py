@@ -1,4 +1,3 @@
-
 # Import libraries
 from genericpath import exists
 from PIL import Image
@@ -6,11 +5,14 @@ import pytesseract
 import sys
 from pdf2image import convert_from_path
 import os
-  
-# Path of the pdf
-PDF_file = "file/1.pdf"
-outfile = "out/1.txt"
+import time
+start_time = time.time()
 
+# Path of the pdf
+stt = "30"
+PDF_file = "file/"+stt+".pdf"
+outfile = "out/"+stt+".txt"
+temp = "./temp/"
   
 '''
 Part #1 : Converting PDF to images
@@ -32,7 +34,7 @@ for page in pages:
     # PDF page 3 -> page_3.jpg
     # ....
     # PDF page n -> page_n.jpg
-    filename = "page_"+str(image_counter)+".jpg"
+    filename = temp+"page_"+str(image_counter)+".jpg"
       
     # Save the image of the page in system
     page.save(filename, 'JPEG')
@@ -61,7 +63,7 @@ for i in range(1, filelimit + 1):
     # page_2.jpg
     # ....
     # page_n.jpg
-    filename = "page_"+str(i)+".jpg"
+    filename = temp+"page_"+str(i)+".jpg"
 
             
     # Recognize the text as string in image using pytesserct
@@ -83,3 +85,5 @@ for i in range(1, filelimit + 1):
   
 # Close the file after writing all the text.
 f.close()
+file = open('out/time.csv', "a", encoding="utf-8")
+file.write("\n"+stt + "," + str(time.time() - start_time) + "\n")
