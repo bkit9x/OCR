@@ -9,7 +9,7 @@ import time
 start_time = time.time()
 
 # Path of the pdf
-stt = "30"
+stt = "2017"
 PDF_file = "file/"+stt+".pdf"
 outfile = "out/"+stt+".txt"
 temp = "./temp/"
